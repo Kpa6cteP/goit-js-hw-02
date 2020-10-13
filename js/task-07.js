@@ -31,18 +31,23 @@ const isLoginValid = function (login) {
 };
 
 const isLoginUnique = function (allLogins, login) {
-  return allLogins.includes(login);
+  return !allLogins.includes(login);
 };
 
 const addLogin = function (allLogins, login) {
   if (isLoginValid(login)) {
-    if (!isLoginUnique(allLogins, login)) {
+
+    if (isLoginUnique(allLogins, login)) {
       allLogins.push(login);
       return "Логин успешно добавлен!";
-    } else {
+    }
+
+    if (!isLoginUnique(allLogins, login)){
       return "Такой логин уже используется!";
     }
-  } else {
+  }
+
+  if (!isLoginValid(login)) {
     return "Ошибка! Логин должен быть от 4 до 16 символов";
   }
 };
